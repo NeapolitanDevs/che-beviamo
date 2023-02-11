@@ -25,10 +25,8 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
 };
 
 const get = async (search: Object): Promise<Object> => {
-    console.log(search, "SEARCH")
     try {
         const cocktail = await query.find(search);
-        console.log("FindOne; ", cocktail);
         return await cocktail || new query();
     } catch (error: unknown) {
         console.error(JSON.stringify(error || ""), "cocktail.ts:get() catch ");
@@ -37,5 +35,16 @@ const get = async (search: Object): Promise<Object> => {
     return new query();
 };
 
-export { add, get };
-export default { add, get };
+const getAll = async (): Promise<Object> => {
+    try{
+        const cocktails = await query.find();
+        return await cocktails || [];
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getAll() catch ");
+    }
+
+    return new query();
+}
+
+export { add, get, getAll };
+export default { add, get, getAll };
