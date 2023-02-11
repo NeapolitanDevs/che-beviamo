@@ -24,7 +24,7 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
     }
 };
 
-const get = async (search: any): Promise<any> => {
+const get = async (search: Object): Promise<Object> => {
     console.log(search, "SEARCH")
     try {
         const cocktail = await query.find(search);
