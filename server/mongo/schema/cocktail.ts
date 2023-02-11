@@ -2,13 +2,13 @@ import mongoose, { Schema } from 'mongoose';
 import { CocktailInterface } from '../../types/cocktail.types';
 
 const schema = new Schema<CocktailInterface>({
-    id: {Number, required: true, index: true},
-    name: {String, required: true},
-    thumbnail: {String},
-    base: {String, required: true},
-    ingredients: [],
+    id: {type: Number, required: true},
+    name: {type:  String, required: true},
+    thumbnail: {type: String},
+    base: {type: String, required: true},
+    ingredients: [String],
     instructions: {
-        EN: {String, required: true},
+        EN: {type: String, required: true},
         IT: String
     }
 });
@@ -24,5 +24,18 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
     }
 };
 
-export { add };
-export default { add };
+const get = async (search: any): Promise<any> => {
+    console.log(search, "SEARCH")
+    try {
+        const cocktail = await query.find(search);
+        console.log("FindOne; ", cocktail);
+        return await cocktail || new query();
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:get() catch ");
+    }
+
+    return new query();
+};
+
+export { add, get };
+export default { add, get };

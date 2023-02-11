@@ -5,7 +5,7 @@ export interface CocktailInterface {
 
 	base: string;
 
-	ingredients: [];
+	ingredients: Array<string>;
 
     instructions: {};
 
