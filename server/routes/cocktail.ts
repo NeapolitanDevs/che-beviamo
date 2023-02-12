@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import bodyparser from "body-parser";
-import { add, get, getAll } from "../mongo/schema/cocktail";
+import { add, get, getAll, getRandom } from "../mongo/schema/cocktail";
 
 var cocktailRouter = express.Router();
 
@@ -35,5 +35,12 @@ cocktailRouter.get('/api/add/', async function (req: Request,res: Response) {
     res.json({status: 200, body: cocktail});
   });
   
+  cocktailRouter.get('/api/getRandom', async function (req: Request,res:  Response) {
+    console.log('GET api/getRandom');
+    const cocktail = await getRandom();
+    console.log(cocktail)
+    res.json({status: 200, body: cocktail});
+  });
+
   export { cocktailRouter }
   export default { cocktailRouter };

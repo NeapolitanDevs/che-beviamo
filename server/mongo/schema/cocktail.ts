@@ -46,5 +46,21 @@ const getAll = async (): Promise<Object> => {
     return new query();
 }
 
-export { add, get, getAll };
-export default { add, get, getAll };
+const getRandom = async (): Promise<Object> => {
+    var randomCocktail: number = 2, cocktails;
+    try {
+
+        var random = Math.floor(Math.random() * randomCocktail);
+
+        cocktails = await query.findOne().skip(random).exec(); //TODO: replacing fixed random with query.count() to filter by total number of cocktails
+        
+        return await cocktails || new query();
+
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getAll() catch ");
+    }
+
+    return new query();
+}
+export { add, get, getAll, getRandom };
+export default { add, get, getAll, getRandom };
