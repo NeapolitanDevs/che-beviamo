@@ -47,8 +47,10 @@ const getAll = async (): Promise<Object> => {
 }
 
 const getRandom = async (): Promise<Object> => {
-    var randomCocktail: number = 2, cocktails;
+    var randomCocktail: number, cocktails;
     try {
+
+        var randomCocktail = await query.count();
 
         var random = Math.floor(Math.random() * randomCocktail);
 
@@ -62,5 +64,6 @@ const getRandom = async (): Promise<Object> => {
 
     return new query();
 }
+
 export { add, get, getAll, getRandom };
 export default { add, get, getAll, getRandom };
