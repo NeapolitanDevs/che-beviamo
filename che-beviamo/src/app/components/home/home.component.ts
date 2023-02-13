@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, take } from 'rxjs';
-import { CocktailService } from 'src/services/cocktail.service';
+import { ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +11,13 @@ export class HomeComponent implements OnInit {
 
   test = [];
 
-  constructor(private cockTailService: CocktailService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
 
   getAll() {
-    this.cockTailService.getAll()
+    this.apiService.getAll()
     .pipe(
       map((x: any) => x.body),
       take(1)

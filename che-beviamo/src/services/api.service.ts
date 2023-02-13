@@ -5,7 +5,7 @@ import { ENDPOINT, ROOT_URL } from 'src/shared/constant';
 @Injectable({
   providedIn: 'root'
 })
-export class CocktailService {
+export class ApiService {
 
   constructor(private http: HttpClient) { }
 
