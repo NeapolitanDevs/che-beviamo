@@ -3,7 +3,6 @@ import bodyparser from "body-parser";
 import path from 'path';
 import dotenv from 'dotenv';
 import { connectDB } from "./mongo/connect";
-import { add, get } from "./mongo/schema/cocktail";
 import { cocktailRouter } from "./routes/cocktail";
 
 const app = express();

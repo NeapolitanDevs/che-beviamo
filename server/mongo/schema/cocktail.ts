@@ -24,12 +24,23 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
     }
 };
 
-const get = async (search: Object): Promise<Object> => {
+const getByBase = async (base: Object): Promise<Object> => {
     try {
-        const cocktail = await query.find(search);
+        const cocktail = await query.find(base);
         return await cocktail || new query();
     } catch (error: unknown) {
-        console.error(JSON.stringify(error || ""), "cocktail.ts:get() catch ");
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getByBase() catch ");
+    }
+
+    return new query();
+};
+
+const getById = async (DrinkId: number): Promise<Object> => {
+    try {
+        const cocktail = await query.find({id: DrinkId});
+        return await cocktail || new query();
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getById() catch ");
     }
 
     return new query();
@@ -54,16 +65,16 @@ const getRandom = async (): Promise<Object> => {
 
         var random = Math.floor(Math.random() * randomCocktail);
 
-        cocktails = await query.findOne().skip(random).exec(); //TODO: replacing fixed random with query.count() to filter by total number of cocktails
+        cocktails = await query.findOne().skip(random).exec();
         
         return await cocktails || new query();
 
     } catch (error: unknown) {
-        console.error(JSON.stringify(error || ""), "cocktail.ts:getAll() catch ");
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getRandom() catch ");
     }
 
     return new query();
 }
 
-export { add, get, getAll, getRandom };
-export default { add, get, getAll, getRandom };
+export { add, getByBase, getById, getAll, getRandom };
+export default { add, getByBase, getById, getAll, getRandom };

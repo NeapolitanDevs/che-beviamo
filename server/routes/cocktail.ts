@@ -1,16 +1,22 @@
 import express, { Request, Response } from "express";
 import bodyparser from "body-parser";
-import { add, get, getAll, getRandom } from "../mongo/schema/cocktail";
+import { add, getByBase, getAll, getRandom, getById } from "../mongo/schema/cocktail";
 
 var cocktailRouter = express.Router();
 
-cocktailRouter.get('/api/get/:base', async function (req: Request,res: Response) {
-    console.log('GET api/get/:base');
-    const cocktailBase = req.params.base;
-    const cocktail = await get({base: cocktailBase});
-    console.log("Cocktails: ", cocktail);
+cocktailRouter.get('/api/getBase/:input', async function (req: Request,res: Response) {
+    console.log('GET api/getBase/:input');
+    const cocktailQuery = req.params.input;
+    const cocktail = await getByBase({base: cocktailQuery});
     res.json({status: 200, body: cocktail});
   });
+
+cocktailRouter.get('/api/getId/:input', async function (req: Request,res: Response) {
+  console.log('GET api/getId/:input');
+  const cocktailQuery = req.params.input;
+  const cocktail = await getById(parseInt(cocktailQuery));
+  res.json({status: 200, body: cocktail});
+});
   
 cocktailRouter.get('/api/add/', async function (req: Request,res: Response) {
     console.log('GET api/add/:cocktail');
@@ -25,7 +31,6 @@ cocktailRouter.get('/api/add/', async function (req: Request,res: Response) {
       }
     }
     const cocktail = await add(cocktailObject);
-    console.log("Cocktail: ", cocktail);
     res.json({status: 200, body: cocktail});
   });
 
@@ -38,7 +43,6 @@ cocktailRouter.get('/api/add/', async function (req: Request,res: Response) {
   cocktailRouter.get('/api/getRandom', async function (req: Request,res:  Response) {
     console.log('GET api/getRandom');
     const cocktail = await getRandom();
-    console.log(cocktail)
     res.json({status: 200, body: cocktail});
   });
 
