@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ENDPOINT, ROOT_URL } from 'src/shared/constant';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CocktailService {
+export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  rootURL = '/api';
-
   getAll() {
-    return this.http.get(this.rootURL + '/getAll');
+    return this.http.get(ROOT_URL + ENDPOINT.getAll);
   }
 }
