@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/modules/material.module";
 import { HomeComponent } from "./home.component";
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
     {
@@ -18,9 +19,8 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: 'cocktail',
-                pathMatch: 'full'
-            },
+                redirectTo: 'cocktail'
+            }
         ]
     },
 ];
@@ -28,7 +28,8 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         HomeComponent,
-        ToolbarComponent
+        ToolbarComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,

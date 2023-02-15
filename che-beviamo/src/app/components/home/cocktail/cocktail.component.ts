@@ -15,6 +15,7 @@ export class CocktailComponent implements OnInit {
   constructor(private cocktailService: CocktailService) { }
 
   ngOnInit(): void {
+    this.getAll();
   }
 
   getAll() {
@@ -24,7 +25,9 @@ export class CocktailComponent implements OnInit {
       )
     .subscribe(x => {
       console.log(x);
-      this.cocktailList = x;
+      for (let index = 0; index < 3; index++) {
+        this.cocktailList = this.cocktailList.concat(x);
+      }
     });
   }
 

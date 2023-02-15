@@ -1,12 +1,15 @@
-<mat-toolbar color="primary"> <!-- accent/basic -->
-    <button mat-icon-button aria-label="Example icon-button with menu icon">
+<mat-toolbar color="primary" class="h-toolbar"> <!-- accent/basic -->
+    <button (click)="menuEmitter.emit()" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Che beviamo</span> <!-- Aggiungere il titolo nelle lingue 18i -->
-    <span class="spacer"></span>
+    <span class="ps-1">{{appTitle}}</span> <!-- Aggiungere il titolo nelle lingue 18i -->
+
+    <!-- <span class="spacer"></span> -->
+
     <!-- <button mat-icon-button aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
     </button>
+
     <button mat-icon-button  aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
     </button> -->

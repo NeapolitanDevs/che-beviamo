@@ -1,3 +1,24 @@
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
-<!-- Footer -->
+<div class="box-overflow">
+  <app-toolbar
+  (menuEmitter)="drawer.toggle()">
+</app-toolbar>
+
+<mat-drawer-container class="h-custom" autosize>
+  <mat-drawer #drawer mode="over">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <router-outlet></router-outlet>
+
+  <app-footer>
+  </app-footer>
+  
+
+</mat-drawer-container>
+
+</div>
+
