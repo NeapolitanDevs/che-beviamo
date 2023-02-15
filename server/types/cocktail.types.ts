@@ -3,8 +3,6 @@ export interface CocktailInterface {
 
 	name: string;
 
-	base: string;
-
 	ingredients: Array<string>;
 
     instructions: {};

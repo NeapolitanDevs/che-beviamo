@@ -5,7 +5,6 @@ const schema = new Schema<CocktailInterface>({
     id: {type: Number, required: true},
     name: {type:  String, required: true},
     thumbnail: {type: String},
-    base: {type: String, required: true},
     ingredients: [String],
     instructions: {
         EN: {type: String, required: true},
