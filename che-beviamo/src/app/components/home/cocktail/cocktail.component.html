@@ -1,1 +1,11 @@
-<p>cocktail works!</p>
+<div class="container pt-2">
+    <mat-card class="mat-elevation-z3 mb-2" *ngFor="let cocktail of cocktailList">
+        <div class="row">
+            <div class="col">
+                <p>{{cocktail.id}} - {{cocktail.name}}</p>
+                <p>{{cocktail.ingredients}}</p>
+                <p>{{cocktail.instructions.IT}}</p>
+            </div>
+        </div>
+    </mat-card>
+</div>

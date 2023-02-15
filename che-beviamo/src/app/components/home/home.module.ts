@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/modules/material.module";
 import { HomeComponent } from "./home.component";
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
     {
@@ -14,14 +16,20 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('./cocktail/cocktail.module')
                     .then(m => m.CocktailModule)
+            },
+            {
+                path: '',
+                redirectTo: 'cocktail'
             }
         ]
-    }
+    },
 ];
 
 @NgModule({
     declarations: [
-        HomeComponent
+        HomeComponent,
+        ToolbarComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,

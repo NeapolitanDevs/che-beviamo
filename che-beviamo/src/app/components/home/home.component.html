@@ -1,13 +1,24 @@
-<!-- tool bar + nav bar -->
+<div class="box-overflow">
+  <app-toolbar
+  (menuEmitter)="drawer.toggle()">
+</app-toolbar>
 
-<p *ngFor="let item of test">
-    {{item | json}}
-</p>
-<button mat-raised-button (click)="getAll()">Test</button>
+<mat-drawer-container class="h-custom" autosize>
+  <mat-drawer #drawer mode="over">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
+  <app-footer>
+  </app-footer>
+  
 
-<!-- Footer -->
+</mat-drawer-container>
 
-<!-- Magari prevedi componenti -->
+</div>
+
