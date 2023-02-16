@@ -35,6 +35,17 @@ const getByIngredient = async (ingredientQuery: string): Promise<Object> => {
     return new query();
 };
 
+const getByName = async (nameQuery: string): Promise<Object> => {
+    try {
+        const cocktail = await query.find({ ingredients: {$regex : new RegExp(nameQuery, "i")} });
+        return await cocktail || new query();
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getByName() catch ");
+    }
+
+    return new query();
+};
+
 const getById = async (DrinkId: number): Promise<Object> => {
     try {
         const cocktail = await query.find({id: DrinkId});
@@ -76,5 +87,5 @@ const getRandom = async (): Promise<Object> => {
     return new query();
 }
 
-export { add, getByIngredient, getById, getAll, getRandom };
-export default { add, getByIngredient, getById, getAll, getRandom };
+export { add, getByIngredient, getByName, getById, getAll, getRandom };
+export default { add, getByIngredient, getByName, getById, getAll, getRandom };

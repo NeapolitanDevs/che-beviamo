@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import bodyparser from "body-parser";
-import { add, getByIngredient, getAll, getRandom, getById } from "../mongo/schema/cocktail";
+import { add, getByIngredient, getByName, getAll, getRandom, getById } from "../mongo/schema/cocktail";
 
 var cocktailRouter = express.Router();
 
@@ -10,6 +10,13 @@ cocktailRouter.get('/api/getIngredient/:input', async function (req: Request,res
     const cocktail = await getByIngredient(ingredientQuery);
     res.json({status: 200, body: cocktail});
   });
+
+cocktailRouter.get('/api/getName/:input', async function (req: Request,res: Response) {
+  console.log('GET api/getName/:input');
+  const nameQuery = req.params.input;
+  const cocktail = await getByName(nameQuery);
+  res.json({status: 200, body: cocktail});
+});
 
 cocktailRouter.get('/api/getId/:input', async function (req: Request,res: Response) {
   console.log('GET api/getId/:input');
