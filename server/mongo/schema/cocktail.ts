@@ -23,12 +23,12 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
     }
 };
 
-const getByBase = async (base: Object): Promise<Object> => {
+const getByIngredient = async (ingredientQuery: string): Promise<Object> => {
     try {
-        const cocktail = await query.find(base);
+        const cocktail = await query.find({ ingredients: {$regex : new RegExp(ingredientQuery, "i")} });
         return await cocktail || new query();
     } catch (error: unknown) {
-        console.error(JSON.stringify(error || ""), "cocktail.ts:getByBase() catch ");
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getByIngredient() catch ");
     }
 
     return new query();
@@ -75,5 +75,5 @@ const getRandom = async (): Promise<Object> => {
     return new query();
 }
 
-export { add, getByBase, getById, getAll, getRandom };
-export default { add, getByBase, getById, getAll, getRandom };
+export { add, getByIngredient, getById, getAll, getRandom };
+export default { add, getByIngredient, getById, getAll, getRandom };
