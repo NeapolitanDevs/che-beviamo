@@ -23,6 +23,7 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
     }
 };
 
+
 const getByIngredient = async (ingredientQuery: string): Promise<Object> => {
     try {
         const cocktail = await query.find({ ingredients: {$regex : new RegExp(ingredientQuery, "i")} });
