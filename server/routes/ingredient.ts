@@ -4,14 +4,14 @@ import { add, getByName, getAll } from "../mongo/schema/ingredients";
 
 var ingredientRouter = express.Router();
 
-ingredientRouter.get('/api/getName/:input', async function (req: Request,res: Response) {
+ingredientRouter.get('/getName/:input', async function (req: Request,res: Response) {
   console.log('GET api/getName/:input');
   const nameQuery = req.params.input;
   const cocktail = await getByName(nameQuery);
   res.json({status: 200, body: cocktail});
 });
   
-ingredientRouter.get('/api/add/', async function (req: Request,res: Response) {
+ingredientRouter.get('/add/', async function (req: Request,res: Response) {
     console.log('GET api/add/:cocktail');
     const ingredientObject = [
       {
@@ -85,7 +85,7 @@ ingredientRouter.get('/api/add/', async function (req: Request,res: Response) {
     res.json({status: 200});
   });
 
-  ingredientRouter.get('/api/getAll', async function (req: Request,res:  Response) {
+  ingredientRouter.get('/getAll', async function (req: Request,res:  Response) {
     console.log('GET api/getAll');
     const cocktail = await getAll();
     res.json({status: 200, body: cocktail});

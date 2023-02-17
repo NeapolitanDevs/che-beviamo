@@ -4,28 +4,28 @@ import { add, getByIngredient, getByName, getAll, getRandom, getById } from "../
 
 var cocktailRouter = express.Router();
 
-cocktailRouter.get('/api/getIngredient/:input', async function (req: Request,res: Response) {
+cocktailRouter.get('/getIngredient/:input', async function (req: Request,res: Response) {
     console.log('GET api/getIngredient/:input');
     const ingredientQuery = req.params.input;
     const cocktail = await getByIngredient(ingredientQuery);
     res.json({status: 200, body: cocktail});
   });
 
-cocktailRouter.get('/api/getName/:input', async function (req: Request,res: Response) {
+cocktailRouter.get('/getName/:input', async function (req: Request,res: Response) {
   console.log('GET api/getName/:input');
   const nameQuery = req.params.input;
   const cocktail = await getByName(nameQuery);
   res.json({status: 200, body: cocktail});
 });
 
-cocktailRouter.get('/api/getId/:input', async function (req: Request,res: Response) {
+cocktailRouter.get('/getId/:input', async function (req: Request,res: Response) {
   console.log('GET api/getId/:input');
   const cocktailQuery = req.params.input;
   const cocktail = await getById(parseInt(cocktailQuery));
   res.json({status: 200, body: cocktail});
 });
   
-cocktailRouter.get('/api/add/', async function (req: Request,res: Response) {
+cocktailRouter.get('/add/', async function (req: Request,res: Response) {
     console.log('GET api/add/:cocktail');
     const cocktailObject = [
       {
@@ -102,13 +102,13 @@ cocktailRouter.get('/api/add/', async function (req: Request,res: Response) {
     res.json({status: 200});
   });
 
-  cocktailRouter.get('/api/getAll', async function (req: Request,res:  Response) {
+  cocktailRouter.get('/getAll', async function (req: Request,res:  Response) {
     console.log('GET api/getAll');
     const cocktail = await getAll();
     res.json({status: 200, body: cocktail});
   });
   
-  cocktailRouter.get('/api/getRandom', async function (req: Request,res:  Response) {
+  cocktailRouter.get('/getRandom', async function (req: Request,res:  Response) {
     console.log('GET api/getRandom');
     const cocktail = await getRandom();
     res.json({status: 200, body: cocktail});
