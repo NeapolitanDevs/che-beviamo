@@ -23,6 +23,17 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
     }
 };
 
+const exists = async (nameQuery: string): Promise<any> => {
+    try {
+        const cocktail = await query.exists({ ingredients: {$regex : new RegExp(nameQuery, "i")} });
+        console.log(cocktail);
+        return false;
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getByIngredient() catch ");
+    }
+
+    return false
+};
 
 const getByIngredient = async (ingredientQuery: string): Promise<Object> => {
     try {
@@ -87,5 +98,5 @@ const getRandom = async (): Promise<Object> => {
     return new query();
 }
 
-export { add, getByIngredient, getByName, getById, getAll, getRandom };
-export default { add, getByIngredient, getByName, getById, getAll, getRandom };
+export { add, getByIngredient, getByName, getById, getAll, getRandom, exists };
+export default { add, getByIngredient, getByName, getById, getAll, getRandom, exists };

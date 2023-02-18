@@ -4,21 +4,21 @@ import { add, getByIngredient, getByName, getAll, getRandom, getById } from "../
 
 var cocktailRouter = express.Router();
 
-cocktailRouter.get('/getIngredient/:input', async function (req: Request,res: Response) {
+cocktailRouter.get('/getByIngredient/:input', async function (req: Request,res: Response) {
     console.log('GET api/getIngredient/:input');
     const ingredientQuery = req.params.input;
     const cocktail = await getByIngredient(ingredientQuery);
     res.json({status: 200, body: cocktail});
   });
 
-cocktailRouter.get('/getName/:input', async function (req: Request,res: Response) {
+cocktailRouter.get('/getByName/:input', async function (req: Request,res: Response) {
   console.log('GET api/getName/:input');
   const nameQuery = req.params.input;
   const cocktail = await getByName(nameQuery);
   res.json({status: 200, body: cocktail});
 });
 
-cocktailRouter.get('/getId/:input', async function (req: Request,res: Response) {
+cocktailRouter.get('/getById/:input', async function (req: Request,res: Response) {
   console.log('GET api/getId/:input');
   const cocktailQuery = req.params.input;
   const cocktail = await getById(parseInt(cocktailQuery));
