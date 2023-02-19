@@ -2,12 +2,15 @@ import mongoose, { Schema } from 'mongoose';
 import { CocktailInterface } from '../../types/cocktail.types';
 
 const schema = new Schema<CocktailInterface>({
-    id: {type: Number, required: true},
+    id: {type: Number, required: true, unique: true},
     name: {type:  String, required: true},
     thumbnail: {type: String},
     ingredients: [String],
+    measurements: [String],
+    alcoholic: String,
+    glass: String,
     instructions: {
-        EN: {type: String, required: true},
+        EN: String,
         IT: String
     }
 });
@@ -19,20 +22,18 @@ const add = async (cocktail: CocktailInterface): Promise<void> => {
         const doc = new query(cocktail);
         await doc.save();
     } catch (error: unknown) {
+        console.log(cocktail, "cocktail.ts:add()")
         console.log(JSON.stringify(error || ""), "cocktail.ts:add()");
     }
 };
 
 const exists = async (nameQuery: string): Promise<any> => {
     try {
-        const cocktail = await query.exists({ ingredients: {$regex : new RegExp(nameQuery, "i")} });
-        console.log(cocktail);
-        return false;
+        const cocktail = await query.exists({ name: {$regex : new RegExp(nameQuery, "i")} })
+        return cocktail;
     } catch (error: unknown) {
-        console.error(JSON.stringify(error || ""), "cocktail.ts:getByIngredient() catch ");
+        console.error(JSON.stringify(error || ""), "cocktail.ts:exists() catch ");
     }
-
-    return false
 };
 
 const getByIngredient = async (ingredientQuery: string): Promise<Object> => {
