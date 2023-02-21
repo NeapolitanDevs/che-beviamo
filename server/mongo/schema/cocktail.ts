@@ -102,9 +102,9 @@ const getRandom = async (): Promise<Object> => {
 
 const getByMultipleIngredients = async (ingredientsQuery: string[]): Promise<Object> => {
     try {
-        const cocktails = await query.find({ ingredients: {$in: ingredientsQuery} });
+        const cocktails = await query.find({ ingredients: {$all: ingredientsQuery} });
 
-        console.log(cocktails)
+        console.log(ingredientsQuery)
 
         return cocktails || new query();
     } catch (error: unknown) {
