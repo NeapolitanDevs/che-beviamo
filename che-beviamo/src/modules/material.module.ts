@@ -4,13 +4,22 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const materialModules = [
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
   MatIconModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatProgressSpinnerModule,
+  FormsModule,
+  ReactiveFormsModule
 ];
 
 @NgModule({

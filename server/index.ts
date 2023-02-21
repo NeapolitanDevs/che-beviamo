@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import { connectDB } from "./mongo/connect";
 import { cocktailRouter } from "./routes/cocktail";
 import { ingredientRouter } from "./routes/ingredient";
-import { syncByIngredient } from "./automation/thecocktaildb";
 
 const app = express();
 const hostname = '127.0.0.1';

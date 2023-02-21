@@ -1,11 +1,53 @@
 <div class="container pt-2">
-    <mat-card class="mat-elevation-z3 mb-2" *ngFor="let cocktail of cocktailList">
-        <div class="row">
-            <div class="col">
-                <p>{{cocktail.id}} - {{cocktail.name}}</p>
-                <p>{{cocktail.ingredients}}</p>
-                <p>{{cocktail.instructions.IT}}</p>
-            </div>
+    <!-- <h1>Cocktails</h1> -->
+    <div class="row">
+        <div class="col-6 col-md-4">
+            <mat-form-field appearance="fill" class="w-100" color="accent">
+                <mat-label>Ingredienti</mat-label>
+                <mat-select [formControl]="ingredient" multiple>
+                  <mat-option *ngFor="let ingredient of ingredientList$ | async" [value]="ingredient.name">
+                    {{ingredient.name}}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
         </div>
-    </mat-card>
+        <div class="col">
+            <!-- Si attiva solo quando filtri per la prima volta -->
+            <button mat-fab color="basic" class="me-2" (click)="reset()">
+                <mat-icon>keyboard_return</mat-icon>
+            </button>
+
+            <button mat-fab color="primary" (click)="getByIngredient()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </div>
+    
+    <!-- fare componente card con content projection -->
+    <div *ngIf="loadCocktail$ | async; else load">
+        <mat-card class="mat-elevation-z3 mb-2" *ngFor="let cocktail of cocktailList">
+            <mat-card-header>
+                <!-- <mat-card-title-group> -->
+                    <mat-card-title>{{cocktail.name}}</mat-card-title>
+                    <mat-card-subtitle>{{cocktail.alcoholic}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{cocktail.ingredients.join(', ')}}</mat-card-subtitle>
+                    <img mat-card-md-image [src]="cocktail.thumbnail">
+                <!-- </mat-card-title-group> -->
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{cocktail.instructions.IT}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Ricetta</button>
+                <button mat-button>Dosi</button>
+              </mat-card-actions>
+        </mat-card>
+    </div>
 </div>
+
+<ng-template #load>
+    <mat-card *ngFor="let item of [].constructor(3)"
+        class="mat-elevation-z3 mb-2 d-flex align-items-center justify-content-center" style="height: 233px;">
+        <mat-spinner></mat-spinner>
+    </mat-card>
+</ng-template>
