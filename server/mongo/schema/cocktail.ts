@@ -99,5 +99,22 @@ const getRandom = async (): Promise<Object> => {
     return new query();
 }
 
-export { add, getByIngredient, getByName, getById, getAll, getRandom, exists };
-export default { add, getByIngredient, getByName, getById, getAll, getRandom, exists };
+
+const getByMultipleIngredients = async (ingredientsQuery: string[]): Promise<Object> => {
+    try {
+        const cocktails = await query.find({ ingredients: {$in: ingredientsQuery} });
+
+        console.log(cocktails)
+
+        return cocktails || new query();
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getByMultipleIngredients() catch ");
+    }
+
+    return new query();
+
+}
+
+
+export { add, getByIngredient, getByMultipleIngredients, getByName, getById, getAll, getRandom, exists };
+export default { add, getByIngredient, getByMultipleIngredients, getByName, getById, getAll, getRandom, exists };
