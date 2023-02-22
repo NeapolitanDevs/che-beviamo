@@ -129,9 +129,7 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
 
   cocktailRouter.get('/getMultipleRandom/:numberOfDrink', async function (req: Request, res: Response) {
     console.log('GET api/getMultipleRandom');
-
-    const numberOfDrinks = Number(req.params.numberOfDrinks);
-
+    const numberOfDrinks = parseInt(req.params.numberOfDrink, 10);
     const cocktails = await getMultipleRandom(numberOfDrinks);
 
     res.json({status: 200, body: cocktails});

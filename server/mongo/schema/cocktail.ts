@@ -118,7 +118,6 @@ const getMultipleRandom = async (numberOfDrinks: number): Promise<Object> => {
     try{
         const randomCocktail = await query.count();
         const random = Math.floor(Math.random() * randomCocktail);
-
         const cocktails = await query.find().skip(random).limit(numberOfDrinks).exec();
         
         return cocktails || new query();
