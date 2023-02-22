@@ -81,14 +81,13 @@ const getAll = async (): Promise<Object> => {
 }
 
 const getRandom = async (): Promise<Object> => {
-    var randomCocktail: number, cocktails;
     try {
 
-        var randomCocktail = await query.count();
+        const randomCocktail = await query.count();
 
-        var random = Math.floor(Math.random() * randomCocktail);
+        const random = Math.floor(Math.random() * randomCocktail);
 
-        cocktails = await query.findOne().skip(random).exec();
+        const cocktails = await query.findOne().skip(random).exec();
         
         return await cocktails || new query();
 
@@ -115,6 +114,20 @@ const getByMultipleIngredients = async (ingredientsQuery: string[]): Promise<Obj
 
 }
 
+const getMultipleRandom = async (numberOfDrinks: number): Promise<Object> => {
+    try{
+        const randomCocktail = await query.count();
+        const random = Math.floor(Math.random() * randomCocktail);
 
-export { add, getByIngredient, getByMultipleIngredients, getByName, getById, getAll, getRandom, exists };
-export default { add, getByIngredient, getByMultipleIngredients, getByName, getById, getAll, getRandom, exists };
+        const cocktails = await query.find().skip(random).limit(numberOfDrinks).exec();
+        
+        return cocktails || new query();
+    } catch (error: unknown) {
+        console.error(JSON.stringify(error || ""), "cocktail.ts:getMultipleRandom() catch ");
+    }
+    return new query();
+}
+
+
+export { add, getByIngredient, getByMultipleIngredients, getByName, getById, getAll, getRandom, getMultipleRandom, exists };
+export default { add, getByIngredient, getByMultipleIngredients, getByName, getById, getAll, getRandom, getMultipleRandom, exists };
