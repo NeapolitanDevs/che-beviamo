@@ -118,9 +118,16 @@ const getMultipleRandom = async (numberOfDrinks: number): Promise<Object> => {
     try{
         const randomCocktail = await query.count();
         const random = Math.floor(Math.random() * randomCocktail);
-        const cocktails = await query.find().skip(random).limit(numberOfDrinks).exec();
+        var cocktailsObject = {}
+
+        for (let i = 0; i < numberOfDrinks; i++) {
+            console.log("FOR", i)
+            const cocktails = await query.findOne().skip(random).exec();
+            cocktailsObject = { cocktailsObject, ...cocktails }
+        } 
         
-        return cocktails || new query();
+        
+        return cocktailsObject || new query();
     } catch (error: unknown) {
         console.error(JSON.stringify(error || ""), "cocktail.ts:getMultipleRandom() catch ");
     }
