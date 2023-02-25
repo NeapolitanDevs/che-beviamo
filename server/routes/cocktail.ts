@@ -1,6 +1,6 @@
 import express, { Request, response, Response } from "express";
 import bodyparser from "body-parser";
-import { add, getByIngredient, getByMultipleIngredients, getByName, getAll, getRandom, getMultipleRandom, getById } from "../mongo/schema/cocktail";
+import cocktail, { add, getByIngredient, getByMultipleIngredients, getByName, getAll, getRandom, getMultipleRandom, getRandomByIngredients, getById } from "../mongo/schema/cocktail";
 
 var cocktailRouter = express.Router();
 
@@ -15,14 +15,23 @@ cocktailRouter.get('/getByName/:input', async function (req: Request,res: Respon
   console.log('GET api/getName/:input');
   const nameQuery = req.params.input;
   const cocktail = await getByName(nameQuery);
-  res.json({status: 200, body: cocktail});
+
+  if(Object.keys(cocktail).length > 0){
+    res.json({status: 200, body: cocktail});
+  }
+  res.json({status: 404, body: "No cocktails found."});
+
 });
 
 cocktailRouter.get('/getById/:input', async function (req: Request,res: Response) {
   console.log('GET api/getId/:input');
   const cocktailQuery = req.params.input;
   const cocktail = await getById(parseInt(cocktailQuery));
-  res.json({status: 200, body: cocktail});
+
+  if(Object.keys(cocktail).length > 0){
+    res.json({status: 200, body: cocktail});
+  } else res.json({status: 404, body: "No cocktails found."});
+
 });
   
 // cocktailRouter.get('/add/', async function (req: Request,res: Response) {
@@ -122,9 +131,10 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
     if( ingredients ) {
       const cocktails = await getByMultipleIngredients(ingredients);
       res.json({status: 200, body: cocktails});
-    } else {
-      res.json({status: 200, body: []});
     }
+
+    res.json({status: 200, body: "No cocktails found."});
+
   })
 
   cocktailRouter.get('/getMultipleRandom/:numberOfDrink', async function (req: Request, res: Response) {
@@ -135,6 +145,18 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
     res.json({status: 200, body: cocktails});
   })
 
+  cocktailRouter.get('/getRandomByIngredients/', async function (req: Request,res: Response){
+    console.log('GET api/getRandomByIngredients');
+
+    const ingredients = req.query.ingredient as string[];
+
+    if ( ingredients ) {
+      const cocktails = await getRandomByIngredients(ingredients);
+      res.json({status: 200, body: cocktails});
+    }
+
+    res.json({status: 200, body: "No cocktails found."});
+  });
 
   export { cocktailRouter }
   export default { cocktailRouter };
