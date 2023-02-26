@@ -150,9 +150,10 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
 
     const ingredients = req.query.ingredient as string[];
 
+    
     if ( ingredients ) {
       const cocktails = await getRandomByIngredients(ingredients);
-      res.json({status: 200, body: cocktails});
+      return res.json({status: 200, body: cocktails});
     }
 
     res.json({status: 200, body: "No cocktails found."});
