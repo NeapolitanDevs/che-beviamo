@@ -99,11 +99,11 @@ const getRandom = async (): Promise<Object> => {
 }
 
 
-const getByMultipleIngredients = async (ingredientsQuery: string[]): Promise<Object> => {
+const getByMultipleIngredients = async (ingredientsQuery: string): Promise<Object> => {
     try {
-        const cocktails = await query.find({ ingredients: {$all: ingredientsQuery} });
+        const ingredients = ingredientsQuery.split(",")
 
-        console.log(ingredientsQuery)
+        const cocktails = await query.find({ ingredients: {$all: ingredients} });
 
         return cocktails || new query();
     } catch (error: unknown) {
@@ -121,7 +121,6 @@ const getMultipleRandom = async (numberOfDrinks: number): Promise<Object> => {
         
         for (let i = 0; i < numberOfDrinks; i++) {
             const random = Math.floor(Math.random() * randomCocktail);
-            console.log("FOR", i)
             const cocktails = await query.findOne().skip(random).exec();
             cocktailsObject.push(cocktails)
         } 
