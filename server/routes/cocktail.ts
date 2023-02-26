@@ -126,7 +126,7 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
   cocktailRouter.get('/getByMultipleIngredient', async function (req: Request,res:  Response) {
     console.log('GET api/getByIngredient');
     
-    const ingredients = req.query.ingredient as string[];
+    const ingredients = req.query.ingredient as string;
 
     if( ingredients ) {
       const cocktails = await getByMultipleIngredients(ingredients);
