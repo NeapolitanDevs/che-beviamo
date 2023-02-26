@@ -7,9 +7,9 @@ export const ROUTE_TYPE = {
 
 export const ENDPOINT = {
     getAll: '/getAll',
-    getByIngredient: '/getByIngredient',
+    getByMultipleIngredient: '/getByMultipleIngredient',
     getByName: '/getByName',
-    getRandom: '/getRandom',
+    getMultipleRandom: '/getMultipleRandom',
     add: '/add/',
     get: '/get/'
 };

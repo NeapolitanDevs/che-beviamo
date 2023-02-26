@@ -20,27 +20,14 @@ export class CocktailComponent implements OnInit {
   constructor(private cocktailService: CocktailService) { }
 
   ngOnInit(): void {
-    //this.getAllCocktail();
     this.getRandom();
   }
 
-  /* getAllCocktail() {
-    this.cocktailService.getAllCocktail()
-    .pipe(
-      take(1)
-      )
-    .subscribe(x => {
-      this.loadCocktail$.next(true);
-      console.log(x);
-      this.cocktailList = x;
-    });
-  } */
-
-  getByIngredient() {
+  getByMultipleIngredient() {
     const ingredient = this.ingredient.value.toString();
     if (ingredient) {
       this.loadCocktail$.next(false);
-      this.cocktailService.getByIngredient(ingredient)
+      this.cocktailService.getByMultipleIngredient(ingredient)
       .pipe(
         take(1)
       )
@@ -56,14 +43,7 @@ export class CocktailComponent implements OnInit {
 
   getRandom() {
     this.loadCocktail$.next(false);
-    const apiCall = this.cocktailService.getRandom();
-    const apiCallList = new Array<any>();
-    for (let index = 0; index < 5; index++) {
-      apiCallList.push(apiCall);
-    }
-    forkJoin(apiCallList).pipe(
-      take(1)
-    )
+    this.cocktailService.getMultipleRandom(5)
     .subscribe(x => {
       this.loadCocktail$.next(true);
       console.log(x);

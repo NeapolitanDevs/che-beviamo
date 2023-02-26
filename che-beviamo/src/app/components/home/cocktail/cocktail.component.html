@@ -17,7 +17,7 @@
                 <mat-icon>keyboard_return</mat-icon>
             </button>
 
-            <button mat-fab color="primary" (click)="getByIngredient()">
+            <button mat-fab color="primary" (click)="getByMultipleIngredient()">
                 <mat-icon>search</mat-icon>
             </button>
         </div>
@@ -25,23 +25,26 @@
     
     <!-- fare componente card con content projection -->
     <div *ngIf="loadCocktail$ | async; else load">
-        <mat-card class="mat-elevation-z3 mb-2" *ngFor="let cocktail of cocktailList">
-            <mat-card-header>
-                <!-- <mat-card-title-group> -->
-                    <mat-card-title>{{cocktail.name}}</mat-card-title>
-                    <mat-card-subtitle>{{cocktail.alcoholic}}</mat-card-subtitle>
-                    <mat-card-subtitle>{{cocktail.ingredients.join(', ')}}</mat-card-subtitle>
-                    <img mat-card-md-image [src]="cocktail.thumbnail">
-                <!-- </mat-card-title-group> -->
-            </mat-card-header>
-            <mat-card-content>
-                <p>{{cocktail.instructions.IT}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>Ricetta</button>
-                <button mat-button>Dosi</button>
-              </mat-card-actions>
-        </mat-card>
+        <div> <!-- ngif per filtri vuoti -->
+            <mat-card class="mat-elevation-z3 mb-2" *ngFor="let cocktail of cocktailList">
+                <mat-card-header>
+                    <!-- <mat-card-title-group> -->
+                        <mat-card-title>{{cocktail.name}}</mat-card-title>
+                        <mat-card-subtitle>{{cocktail.alcoholic}}</mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <span *ngFor="let ingredient of cocktail.ingredients; index as i; last as isLast">
+                                {{ingredient}} {{cocktail.measurements[i] ? '(' + cocktail.measurements[i] + ')' : ''}}{{isLast ? '' : ', '}}
+                            </span>
+                            <!-- {{cocktail.ingredients.join(', ')}} {{cocktail.measurements[i] ? '(' + cocktail.measurements[i] + ')' : ''}} -->
+                        </mat-card-subtitle>
+                        <img mat-card-md-image [src]="cocktail.thumbnail">
+                    <!-- </mat-card-title-group> -->
+                </mat-card-header>
+                <mat-card-content class="pt-2">
+                    <p>{{cocktail.instructions.IT}}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
 
