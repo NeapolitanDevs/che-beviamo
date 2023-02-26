@@ -24,7 +24,7 @@ export class CocktailComponent implements OnInit {
   }
 
   getByMultipleIngredient() {
-    const ingredient = this.ingredient.value.toString();
+    const ingredient = this.ingredient.value ? this.ingredient.value.toString() : null;
     if (ingredient) {
       this.loadCocktail$.next(false);
       this.cocktailService.getByMultipleIngredient(ingredient)
