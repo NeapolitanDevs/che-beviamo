@@ -18,15 +18,15 @@ export class ApiService {
       );
   }
 
-  getByIngredient(ingredients: any): Observable<CocktailClass[]> {
-    return this.http.get<any>(ROOT_URL + ROUTE_TYPE.cocktail + ENDPOINT.getByIngredient + '/' + ingredients)
+  getByMultipleIngredient(ingredients: any) {
+    return this.http.get<any>(ROOT_URL + ROUTE_TYPE.cocktail + ENDPOINT.getByMultipleIngredient + '/?ingredient=' + ingredients)
     .pipe(
       map(x => x.body)
     );
   }
 
-  getRandom(): Observable<CocktailClass> {
-    return this.http.get<{status: number, body: any}>(ROOT_URL + ROUTE_TYPE.cocktail + ENDPOINT.getRandom)
+  getMultipleRandom(numberOfDrink: number): Observable<CocktailClass[]> {
+    return this.http.get<any>(ROOT_URL + ROUTE_TYPE.cocktail + ENDPOINT.getMultipleRandom + '/' + numberOfDrink)
     .pipe(
       map(x => x.body)
     );

@@ -20,11 +20,11 @@ export class CocktailService {
     return this.apiService.getAll(ROUTE_TYPE.cocktail);
   }
 
-  getByIngredient(ingredients: any): Observable<CocktailClass[]> {
-    return this.apiService.getByIngredient(ingredients);
+  getByMultipleIngredient(ingredients: any) {
+    return this.apiService.getByMultipleIngredient(ingredients);
   }
 
-  getRandom(): Observable<CocktailClass> {
-    return this.apiService.getRandom();
+  getMultipleRandom(numberOfDrink: number): Observable<CocktailClass[]> {
+    return this.apiService.getMultipleRandom(numberOfDrink);
   }
 }
