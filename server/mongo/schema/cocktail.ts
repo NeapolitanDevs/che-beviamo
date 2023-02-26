@@ -136,7 +136,9 @@ const getMultipleRandom = async (numberOfDrinks: number): Promise<Object> => {
 
 const getRandomByIngredients = async (ingredientsQuery: string[]): Promise<Object> => {
     try{
-        const random = Math.floor(Math.random());
+        const randomCocktail = await query.find({ ingredients: {$all: ingredientsQuery} }).count();
+        const random = Math.floor(Math.random() * randomCocktail);
+        console.log(random)
         const cocktail = await query.findOne({ ingredients: {$all: ingredientsQuery} }).skip(random).exec();
 
         return cocktail || new query();
