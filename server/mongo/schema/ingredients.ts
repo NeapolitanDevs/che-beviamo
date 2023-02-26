@@ -30,7 +30,7 @@ const getByName = async (nameQuery: string): Promise<Object> => {
 
 const getAll = async (): Promise<Object> => {
     try{
-        const cocktails = await query.find();
+        const cocktails = await query.find().sort({name: 1});
         return await cocktails || [];
     } catch (error: unknown) {
         console.error(JSON.stringify(error || ""), "ingredient.ts:getAll() catch ");
