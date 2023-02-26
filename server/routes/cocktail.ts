@@ -130,7 +130,7 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
 
     if( ingredients ) {
       const cocktails = await getByMultipleIngredients(ingredients);
-      res.json({status: 200, body: cocktails});
+      return res.json({status: 200, body: cocktails});
     }
 
     res.json({status: 200, body: "No cocktails found."});
