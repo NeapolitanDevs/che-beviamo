@@ -5,6 +5,7 @@ import { MaterialModule } from "src/modules/material.module";
 import { HomeComponent } from "./home.component";
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { SharedModule } from "src/modules/shared.module";
 
 const routes: Routes = [
     {
@@ -34,6 +35,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         MaterialModule,
+        SharedModule,
         RouterModule.forChild(routes)
     ]
 })

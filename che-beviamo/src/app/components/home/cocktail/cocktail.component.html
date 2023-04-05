@@ -25,26 +25,51 @@
     
     <!-- fare componente card con content projection -->
     <div *ngIf="loadCocktail$ | async; else load">
-        <div> <!-- ngif per filtri vuoti -->
+        <div class="row">
+            <div class="col-12 col-md-6 mb-2" *ngFor="let cocktail of cocktailList">
+                <mat-card class="mat-elevation-z3">
+                    <mat-card-header>
+                        <!-- <mat-card-title-group> -->
+                            <mat-card-title>{{cocktail.name}}</mat-card-title>
+                            <mat-card-subtitle>{{cocktail.alcoholic}}</mat-card-subtitle>
+                            <mat-card-subtitle>
+                                <span *ngFor="let ingredient of cocktail.ingredients; index as i; last as isLast">
+                                    {{ingredient}} {{cocktail.measurements[i] ? '(' + cocktail.measurements[i] + ')' : ''}}{{isLast ? '' : ', '}}
+                                </span>
+                                <!-- {{cocktail.ingredients.join(', ')}} {{cocktail.measurements[i] ? '(' + cocktail.measurements[i] + ')' : ''}} -->
+                            </mat-card-subtitle>
+                            <img mat-card-md-image [src]="cocktail.thumbnail">
+                        <!-- </mat-card-title-group> -->
+                    </mat-card-header>
+                    <!-- <mat-card-content class="pt-2">
+                        <p>{{cocktail.instructions.IT}}</p>
+                    </mat-card-content> -->
+                    <!-- pulsante "Preparazione"con modale -->
+                    <!-- Oppure click sulla card con apertura modale -->
+                    <mat-card-actions>
+                        <button mat-button (click)="openDialog(cocktail.instructions.IT)">Preparazione</button>
+                      </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- <div> 
             <mat-card class="mat-elevation-z3 mb-2" *ngFor="let cocktail of cocktailList">
                 <mat-card-header>
-                    <!-- <mat-card-title-group> -->
                         <mat-card-title>{{cocktail.name}}</mat-card-title>
                         <mat-card-subtitle>{{cocktail.alcoholic}}</mat-card-subtitle>
                         <mat-card-subtitle>
                             <span *ngFor="let ingredient of cocktail.ingredients; index as i; last as isLast">
                                 {{ingredient}} {{cocktail.measurements[i] ? '(' + cocktail.measurements[i] + ')' : ''}}{{isLast ? '' : ', '}}
                             </span>
-                            <!-- {{cocktail.ingredients.join(', ')}} {{cocktail.measurements[i] ? '(' + cocktail.measurements[i] + ')' : ''}} -->
                         </mat-card-subtitle>
                         <img mat-card-md-image [src]="cocktail.thumbnail">
-                    <!-- </mat-card-title-group> -->
                 </mat-card-header>
                 <mat-card-content class="pt-2">
                     <p>{{cocktail.instructions.IT}}</p>
                 </mat-card-content>
             </mat-card>
-        </div>
+        </div> -->
     </div>
 </div>
 

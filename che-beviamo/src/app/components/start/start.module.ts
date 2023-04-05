@@ -3,18 +3,18 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/modules/material.module";
 import { SharedModule } from "src/modules/shared.module";
-import { CocktailComponent } from "./cocktail.component";
+import { StartComponent } from "./start.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: CocktailComponent,
-    }
+        component: StartComponent
+    },
 ];
 
 @NgModule({
     declarations: [
-        CocktailComponent
+        StartComponent
     ],
     imports: [
         CommonModule,
@@ -23,4 +23,4 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ]
 })
-export class CocktailModule {}
+export class StartModule {}

@@ -8,7 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const materialModules = [
   MatCardModule,
@@ -20,8 +20,7 @@ const materialModules = [
   MatSelectModule,
   MatProgressSpinnerModule,
   MatRippleModule,
-  FormsModule,
-  ReactiveFormsModule
+  MatDialogModule
 ];
 
 @NgModule({
