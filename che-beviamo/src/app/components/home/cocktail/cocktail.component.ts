@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Subscription, take } from 'rxjs';
 import { CocktailClass } from 'src/models/cocktail';
 import { CocktailService } from './cocktail.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { DetailDialogComponent } from 'src/shared/detail-dialog/detail-dialog.co
   templateUrl: './cocktail.component.html',
   styleUrls: ['./cocktail.component.scss']
 })
-export class CocktailComponent implements OnInit {
+export class CocktailComponent implements OnInit, OnDestroy {
 // mettere variabili per il componente riguardante la scelta fatta in start
   
   loadCocktail$ = new BehaviorSubject<boolean>(false);
@@ -19,6 +19,10 @@ export class CocktailComponent implements OnInit {
   ingredientList$ = this.cocktailService.getAllIngredient();
 
   ingredient = new FormControl('');
+  cocktailName = new FormControl();
+
+  sub1$ = new Subscription();
+  sub2$ = new Subscription();
 
   constructor(
     private cocktailService: CocktailService,
@@ -27,21 +31,32 @@ export class CocktailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRandom();
+
+    this.sub1$ = this.ingredient.valueChanges.subscribe(value => {
+      if (value) this.cocktailName.disable();
+    });
+
+    this.sub2$ = this.cocktailName.valueChanges.subscribe(value => {
+      if (value) this.ingredient.disable();
+    });
   }
 
-  getByMultipleIngredient() {
-    const ingredient = this.ingredient.value ? this.ingredient.value.toString() : null;
-    if (ingredient) {
+  search(ingredient: string[], name: string) {
+    if (ingredient || name) {
       this.loadCocktail$.next(false);
-      this.cocktailService.getByMultipleIngredient(ingredient)
-      .pipe(
-        take(1)
-      )
-      .subscribe(x => {
-        this.loadCocktail$.next(true);
-        console.log('Response', x);
-        this.cocktailList = x;
-      })
+      const apiCall = ingredient ? 
+        this.cocktailService.getByMultipleIngredient(ingredient.toString()) :
+        this.cocktailService.getByName(name);
+        
+      apiCall
+        .pipe(
+          take(1)
+        )
+        .subscribe(x => {
+          this.loadCocktail$.next(true);
+          console.log('Response', x);
+          this.cocktailList = x;
+        });
     } else {
       this.getRandom();
     }
@@ -49,7 +64,7 @@ export class CocktailComponent implements OnInit {
 
   getRandom() {
     this.loadCocktail$.next(false);
-    this.cocktailService.getMultipleRandom(5)
+    this.cocktailService.getMultipleRandom(8)
     .subscribe(x => {
       this.loadCocktail$.next(true);
       console.log(x);
@@ -70,6 +85,14 @@ export class CocktailComponent implements OnInit {
 
   reset() {
     this.ingredient.reset();
+    this.cocktailName.reset();
+    this.ingredient.enable();
+    this.cocktailName.enable();
     this.getRandom();
+  }
+
+  ngOnDestroy(): void {
+    this.sub1$.unsubscribe();
+    this.sub2$.unsubscribe();
   }
 }

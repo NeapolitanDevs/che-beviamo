@@ -9,6 +9,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
 
 const materialModules = [
   MatCardModule,
@@ -20,7 +21,8 @@ const materialModules = [
   MatSelectModule,
   MatProgressSpinnerModule,
   MatRippleModule,
-  MatDialogModule
+  MatDialogModule,
+  MatInputModule
 ];
 
 @NgModule({
