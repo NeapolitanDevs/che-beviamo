@@ -1,6 +1,6 @@
 # che-beviamo
 
-## Routes
+## Routes
 
 ### Cocktail
 - /api/cocktail/getAll
