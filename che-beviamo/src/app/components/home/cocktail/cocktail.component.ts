@@ -12,7 +12,6 @@ import { DetailDialogComponent } from 'src/shared/detail-dialog/detail-dialog.co
   styleUrls: ['./cocktail.component.scss']
 })
 export class CocktailComponent implements OnInit, OnDestroy {
-// mettere variabili per il componente riguardante la scelta fatta in start
   
   loadCocktail$ = new BehaviorSubject<boolean>(false);
   cocktailList: CocktailClass[] = new Array<CocktailClass>();
@@ -55,7 +54,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
         .subscribe(x => {
           this.loadCocktail$.next(true);
           console.log('Response', x);
-          this.cocktailList = x;
+          this.cocktailList = (typeof(x) !== 'string') && x?.length > 0 ? x : [];
         });
     } else {
       this.getRandom();

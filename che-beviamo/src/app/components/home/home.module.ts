@@ -4,10 +4,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/modules/material.module";
 import { HomeComponent } from "./home.component";
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from "src/modules/shared.module";
 
 const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'cocktail'
+    },
     {
         path: '',
         component: HomeComponent,
@@ -17,6 +20,12 @@ const routes: Routes = [
                 loadChildren: () =>
                     import('./cocktail/cocktail.module')
                     .then(m => m.CocktailModule)
+            },
+            {
+                path: 'info',
+                loadChildren: () =>
+                    import('./info-creators/info-creators.module')
+                    .then(m => m.InfoCreatorsModule)
             },
             {
                 path: '',
@@ -29,8 +38,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         HomeComponent,
-        ToolbarComponent,
-        FooterComponent
+        ToolbarComponent
     ],
     imports: [
         CommonModule,

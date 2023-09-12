@@ -10,6 +10,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 const materialModules = [
   MatCardModule,
@@ -22,7 +25,8 @@ const materialModules = [
   MatProgressSpinnerModule,
   MatRippleModule,
   MatDialogModule,
-  MatInputModule
+  MatInputModule,
+  MatExpansionModule
 ];
 
 @NgModule({

@@ -1,17 +1,10 @@
 <mat-toolbar color="primary" class="h-toolbar"> <!-- accent/basic -->
-    <!-- To-Do capire a cosa ci possa servire il menu -->
-  <!-- <button (click)="menuEmitter.emit()" mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button> -->
-    <span class="ps-1">{{appTitle}}</span> <!-- Aggiungere il titolo nelle lingue 18i -->
+
+    <span class="ps-1">{{appTitle}}</span>
 
     <span class="spacer"></span>
 
     <button mat-icon-button >
-      <mat-icon>info</mat-icon>
+      <mat-icon (click)="goToInfo()">info</mat-icon>
     </button>
-
-    <!-- <button mat-icon-button  aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button> -->
 </mat-toolbar>

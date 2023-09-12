@@ -1,4 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-toolbar',
@@ -6,11 +8,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  @Output() menuEmitter = new EventEmitter();
-  appTitle = 'Che beviamo'; // mettilo nelle lingue 18i
-  constructor() { }
+  
+  appTitle = 'Che beviamo' + ' v' + environment.appVersion; // mettilo nelle lingue 18i
+  
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToInfo() {
+    this.router.navigate(['/home/info']);
   }
 
 }

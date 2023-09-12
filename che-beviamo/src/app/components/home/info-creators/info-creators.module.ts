@@ -3,18 +3,18 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/modules/material.module";
 import { SharedModule } from "src/modules/shared.module";
-import { StartComponent } from "./start.component";
+import { InfoCreatorsComponent } from "./info-creators.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: StartComponent
-    },
+        component: InfoCreatorsComponent,
+    }
 ];
 
 @NgModule({
     declarations: [
-        StartComponent
+        InfoCreatorsComponent
     ],
     imports: [
         CommonModule,
@@ -23,4 +23,4 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ]
 })
-export class StartModule {}
+export class InfoCreatorsModule {}
