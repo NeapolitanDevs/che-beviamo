@@ -8,7 +8,13 @@ ingredientRouter.get('/getByName/:input', async function (req: Request,res: Resp
   console.log('GET api/getName/:input');
   const nameQuery = req.params.input;
   const cocktail = await getByName(nameQuery);
-  res.json({status: 200, body: cocktail});
+  
+  if(Object.keys(cocktail).length > 0){
+    res.json({status: 200, body: cocktail});
+  }
+  
+  res.json({status: 404, body: cocktail});
+
 });
   
 /*ingredientRouter.get('/add/', async function (req: Request,res: Response) {
