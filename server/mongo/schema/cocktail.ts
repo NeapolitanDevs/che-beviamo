@@ -49,7 +49,7 @@ const getByIngredient = async (ingredientQuery: string): Promise<Object> => {
 
 const getByName = async (nameQuery: string): Promise<Object> => {
     try {
-        const cocktail = await query.find({ ingredients: {$regex : new RegExp(nameQuery, "i")} });
+        const cocktail = await query.find({ name: {$regex : new RegExp(nameQuery, "i")} });
         return await cocktail || new query();
     } catch (error: unknown) {
         console.error(JSON.stringify(error || ""), "cocktail.ts:getByName() catch ");
