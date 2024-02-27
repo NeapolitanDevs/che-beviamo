@@ -17,7 +17,7 @@ cocktailRouter.get('/getByName/:input', async function (req: Request,res: Respon
   const cocktail = await getByName(nameQuery);
 
   if(Object.keys(cocktail).length > 0){
-    res.json({status: 200, body: cocktail});
+    return res.json({status: 200, body: cocktail});
   }
 
     res.json({status: 404, body: cocktail});
@@ -30,7 +30,7 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
   const cocktail = await getById(parseInt(cocktailQuery));
 
   if(Object.keys(cocktail).length > 0){
-    res.json({status: 200, body: cocktail});
+    return res.json({status: 200, body: cocktail});
   } else  res.json({status: 404, body: cocktail});
 
 });
