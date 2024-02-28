@@ -22,7 +22,7 @@ const routes: Routes = [
                     .then(m => m.CocktailModule)
             },
             {
-                path: '',
+                path: '**',
                 redirectTo: 'cocktail'
             }
         ]
