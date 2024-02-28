@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { HelpDialogComponent } from 'src/shared/help-dialog/help-dialog.component';
 import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.component';
 
@@ -12,7 +11,7 @@ import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.componen
 })
 export class ToolbarComponent implements OnInit {
   
-  appTitle = 'Che beviamo' + ' v' + environment.appVersion; // mettilo nelle lingue 18i
+  appTitle = 'Che beviamo'; // mettilo nelle lingue 18i
   
   constructor(
     public router: Router,
