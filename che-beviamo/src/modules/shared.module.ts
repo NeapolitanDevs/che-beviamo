@@ -3,10 +3,14 @@ import { DetailDialogComponent } from 'src/shared/detail-dialog/detail-dialog.co
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
+import { HelpDialogComponent } from 'src/shared/help-dialog/help-dialog.component';
+import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.component';
 
 @NgModule({
   declarations: [
-    DetailDialogComponent
+    DetailDialogComponent,
+    InfoDialogComponent,
+    HelpDialogComponent
   ],
   imports: [
     CommonModule,

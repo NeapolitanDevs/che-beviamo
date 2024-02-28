@@ -22,12 +22,6 @@ const routes: Routes = [
                     .then(m => m.CocktailModule)
             },
             {
-                path: 'info',
-                loadChildren: () =>
-                    import('./info-creators/info-creators.module')
-                    .then(m => m.InfoCreatorsModule)
-            },
-            {
                 path: '',
                 redirectTo: 'cocktail'
             }

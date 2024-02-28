@@ -54,7 +54,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
         .subscribe(x => {
           this.loadCocktail$.next(true);
           console.log('Response', x);
-          this.cocktailList = (typeof(x) !== 'string') && x?.length > 0 ? x : [];
+          this.cocktailList = x;
         });
     } else {
       this.getRandom();

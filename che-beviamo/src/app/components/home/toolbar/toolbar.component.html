@@ -5,6 +5,9 @@
     <span class="spacer"></span>
 
     <button mat-icon-button >
-      <mat-icon (click)="goToInfo()">info</mat-icon>
+      <mat-icon (click)="openDialog(false)">help</mat-icon>
+    </button>
+    <button mat-icon-button >
+      <mat-icon (click)="openDialog(true)">info</mat-icon>
     </button>
 </mat-toolbar>
