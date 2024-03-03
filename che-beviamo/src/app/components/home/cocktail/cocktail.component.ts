@@ -32,11 +32,11 @@ export class CocktailComponent implements OnInit, OnDestroy {
     this.getRandom();
 
     this.sub1$ = this.ingredient.valueChanges.subscribe(value => {
-      if (value) this.cocktailName.disable();
+      if (value) this.cocktailName.reset();
     });
 
     this.sub2$ = this.cocktailName.valueChanges.subscribe(value => {
-      if (value) this.ingredient.disable();
+      if (value) this.ingredient.reset();
     });
   }
 
@@ -46,16 +46,15 @@ export class CocktailComponent implements OnInit, OnDestroy {
       const apiCall = ingredient ? 
         this.cocktailService.getByMultipleIngredient(ingredient.toString()) :
         this.cocktailService.getByName(name);
-        
-      apiCall
-        .pipe(
-          take(1)
-        )
-        .subscribe(x => {
+
+      apiCall.pipe(take(1)).subscribe({
+        next: (resp) => {
           this.loadCocktail$.next(true);
-          console.log('Response', x);
-          this.cocktailList = x;
-        });
+          console.log('Response', resp);
+          this.cocktailList = resp;
+        },
+        error: (e) => this.loadCocktail$.next(true)
+      });
     } else {
       this.getRandom();
     }
@@ -63,8 +62,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
 
   getRandom() {
     this.loadCocktail$.next(false);
-    this.cocktailService.getMultipleRandom(8)
-    .subscribe(x => {
+    this.cocktailService.getMultipleRandom(8).pipe(take(1)).subscribe(x => {
       this.loadCocktail$.next(true);
       console.log(x);
       this.cocktailList = x;
@@ -85,8 +83,6 @@ export class CocktailComponent implements OnInit, OnDestroy {
   reset() {
     this.ingredient.reset();
     this.cocktailName.reset();
-    this.ingredient.enable();
-    this.cocktailName.enable();
     this.getRandom();
   }
 
