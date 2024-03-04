@@ -5,8 +5,7 @@
     Ciao siamo due giovani sviluppatori che si divertono oltre il lavoro!
   </h4>
 
-  <a mat-stroked-button href="https://www.linkedin.com/in/giuseppe-nappo-a22444170" target="_blank" class="me-2">Giuseppe Nappo</a>
-  <a mat-stroked-button href="https://www.linkedin.com/in/marco-abate" target="_blank">Marco Abate</a>
+  <a *ngFor="let creator of creatorsList" mat-stroked-button [href]="creator.link" target="_blank" class="me-2">{{creator.name}}</a>
     
 </div>
 <div mat-dialog-actions>
