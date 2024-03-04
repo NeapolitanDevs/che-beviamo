@@ -35,9 +35,10 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
     res.json({status: 200, body: cocktail});
   });
 
-  cocktailRouter.get('/getAllNames', async function (req: Request,res:  Response) {
+  cocktailRouter.get('/getAllNames/:name', async function (req: Request,res:  Response) {
     console.log('GET api/getAllNames');
-    const cocktail = await getAllNames();
+    const cocktailQuery = req.params.name;
+    const cocktail = await getAllNames(cocktailQuery);
     res.json({status: 200, body: cocktail});
   });
   

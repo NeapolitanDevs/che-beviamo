@@ -147,10 +147,9 @@ const getRandomByIngredients = async (ingredientsQuery: string[]): Promise<Objec
     return new query();
 }
 
-const getAllNames = async (): Promise<Object> => {
+const getAllNames = async (nameQuery: string): Promise<Object> => {
     try{
-        const cocktails = await query.distinct('name');
-        console.log(cocktails)
+        const cocktails = await query.find({ name: {$regex : new RegExp(nameQuery, "i")} });
         return await cocktails || [];
     } catch (error: unknown) {
         console.error(JSON.stringify(error || ""), "cocktail.ts:getAll() catch ");
