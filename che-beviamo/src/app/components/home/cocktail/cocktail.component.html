@@ -29,7 +29,7 @@
                 <div class="col">
                     <!-- Si attiva solo quando filtri per la prima volta -->
                     <button mat-fab color="basic" class="me-2" (click)="reset()">
-                        <mat-icon>keyboard_return</mat-icon>
+                        <mat-icon>refresh</mat-icon>
                     </button>
         
                     <button mat-fab color="primary" (click)="search(ingredient.value, cocktailName.value)">
@@ -64,8 +64,8 @@
                 </mat-card>
             </div>
 
-            <div class="col d-flex justify-content-center align-items-center h-100" *ngIf="cocktailList.length === 0">
-                <h1>Nessun cocktail esistente</h1>
+            <div class="col d-flex justify-content-center align-items-center h-100 pt-5" *ngIf="cocktailList.length === 0">
+                <img src="/assets/img/notFound.jpg" class="img-not-found">
             </div>
         </div>
     </div>
