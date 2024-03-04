@@ -38,7 +38,7 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
   cocktailRouter.get('/getAllNames', async function (req: Request,res:  Response) {
     console.log('GET api/getAllNames');
     const cocktail = await getAllNames();
-    res.status(200).send(cocktail);
+    res.json({status: 200, body: cocktail});
   });
   
   cocktailRouter.get('/getRandom', async function (req: Request,res:  Response) {
