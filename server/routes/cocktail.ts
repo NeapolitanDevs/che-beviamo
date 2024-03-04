@@ -11,16 +11,12 @@ cocktailRouter.get('/getByIngredient/:input', async function (req: Request,res: 
     res.json({status: 200, body: cocktail});
   });
 
-cocktailRouter.get('/getByName/:input', async function (req: Request,res: Response) {
+cocktailRouter.get(['/getByName/:input', '/getByName'], async function (req: Request,res: Response) {
   console.log('GET api/getName/:input');
   const nameQuery = req.params.input;
   const cocktail = await getByName(nameQuery);
 
-  if(Object.keys(cocktail).length > 0){
-    return res.json({status: 200, body: cocktail});
-  }
-
-    res.json({status: 404, body: cocktail});
+  return res.json({status: 200, body: cocktail});
 
 });
 
@@ -29,9 +25,7 @@ cocktailRouter.get('/getById/:input', async function (req: Request,res: Response
   const cocktailQuery = req.params.input;
   const cocktail = await getById(parseInt(cocktailQuery));
 
-  if(Object.keys(cocktail).length > 0){
-    return res.json({status: 200, body: cocktail});
-  } else  res.json({status: 404, body: cocktail});
+  return res.json({status: 200, body: cocktail});
 
 });
   
