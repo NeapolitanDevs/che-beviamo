@@ -5,6 +5,7 @@ import { CocktailClass } from 'src/models/cocktail';
 import { CocktailService } from './cocktail.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DetailDialogComponent } from 'src/shared/detail-dialog/detail-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cocktail',
@@ -25,7 +26,8 @@ export class CocktailComponent implements OnInit, OnDestroy {
 
   constructor(
     private cocktailService: CocktailService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translate: TranslateService
     ) { }
 
   ngOnInit(): void {
@@ -71,13 +73,15 @@ export class CocktailComponent implements OnInit, OnDestroy {
     });
   }
 
-  openDialog(instruction: string) {
+  openDialog(instruction: any) {
+    const lang = this.translate.getBrowserLang()?.toUpperCase();
+    const instructionDialog = lang ? instruction[lang] : 'DESCRIPTION.NOT_FOUND'
     this.dialog.open(DetailDialogComponent, {
       autoFocus: false,
       restoreFocus: false,
       width: '500px',
       data: {
-        instruction
+        instruction: instructionDialog,
       }
     });
   }

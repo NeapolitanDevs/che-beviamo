@@ -11,8 +11,6 @@ import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.componen
 })
 export class ToolbarComponent implements OnInit {
   
-  appTitle = 'Che beviamo'; // mettilo nelle lingue 18i
-  
   constructor(
     public router: Router,
     public dialog: MatDialog

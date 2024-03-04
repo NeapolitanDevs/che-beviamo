@@ -1,0 +1,25 @@
+{
+    "LANGUAGES": {
+        "ITALIAN": "Italiano",
+        "ENGLISH": "Inglese"
+    },
+    "TITLE": "Che Beviamo",
+    "ACTIONS": {
+        "FILTERS": "Filtri",
+        "CLOSE": "Chiudi",
+        "PREPARATION": "Preparazione"
+    },
+    "FORM": {
+        "INGREDIENTS": "Ingredienti",
+        "COCKTAIL_NAME": "Nome del cocktail"
+    },
+    "DIALOG": {
+        "HOW_DOES_IT_WORK": "Come funziona?",
+        "WHO_WE_ARE": "Chi siamo?"
+    },
+    "DESCRIPTION": {
+        "HOW_DOES_IT_WORK": "Che beviamo ti salva dall’indecisione della vita! Ad ogni accesso al sito ti ritroverai con 8 drink diversi, scelti in modo casuale. Potrai cercare per nome o addirittura selezionare gli ingredienti che preferisci per una ricerca più specifica. Mi raccomando, non stressarti e goditi la serata!",
+        "WHO_WE_ARE": "Ciao siamo due giovani sviluppatori che si divertono oltre il lavoro!",
+        "NOT_FOUND": "Nessuna descrizione disponibile"
+    }
+}

@@ -1,13 +1,11 @@
-<h1 mat-dialog-title>Chi siamo?</h1>
+<h1 mat-dialog-title>{{'DIALOG.WHO_WE_ARE' | translate}}</h1>
 <div mat-dialog-content>
 
-  <h4>
-    Ciao siamo due giovani sviluppatori che si divertono oltre il lavoro!
-  </h4>
+  <h4>{{'DESCRIPTION.WHO_WE_ARE' | translate}}</h4>
 
   <a *ngFor="let creator of creatorsList" mat-stroked-button [href]="creator.link" target="_blank" class="me-2">{{creator.name}}</a>
     
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Chiudi</button>
+  <button mat-button mat-dialog-close>{{'ACTIONS.CLOSE' | translate}}</button>
 </div>

@@ -1,0 +1,25 @@
+{
+    "LANGUAGES": {
+        "ITALIAN": "Italian",
+        "ENGLISH": "English"
+    },
+    "TITLE": "What Should We Drink",
+    "ACTIONS": {
+        "FILTERS": "Filters",
+        "CLOSE": "Close",
+        "PREPARATION": "Preparation"
+    },
+    "FORM": {
+        "INGREDIENTS": "Ingredients",
+        "COCKTAIL_NAME": "Name of the cocktail"
+    },
+    "DIALOG": {
+        "HOW_DOES_IT_WORK": "How does it work?",
+        "WHO_WE_ARE": "Who we are?"
+    },
+    "DESCRIPTION": {
+        "HOW_DOES_IT_WORK": "What should we drink saves you from the indecision of life! Each time you access the site you will find yourself with 8 different drinks, chosen randomly. You can search by name or even select the ingredients you prefer for a more specific search. Please don't stress and enjoy the evening!",
+        "WHO_WE_ARE": "Hi we are two young developers who have fun beyond work!",
+        "NOT_FOUND": "No description available"
+    }
+}

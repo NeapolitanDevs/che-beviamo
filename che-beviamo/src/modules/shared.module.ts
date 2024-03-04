@@ -5,6 +5,7 @@ import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
 import { HelpDialogComponent } from 'src/shared/help-dialog/help-dialog.component';
 import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,11 +17,13 @@ import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.componen
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class SharedModule { }

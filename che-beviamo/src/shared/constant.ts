@@ -19,3 +19,8 @@ export const CREATORS = [
     {name: 'Marco Abate', link: 'https://www.linkedin.com/in/marco-abate'},
     {name: 'Giuseppe Nappo', link: 'https://www.linkedin.com/in/giuseppe-nappo-a22444170'}
 ];
+
+export const LANGUAGES: any = {
+    IT : { code: 'it', label: 'LANGUAGES.ITALIAN' },
+    EN : { code: 'en', label: 'LANGUAGES.ENGLISH' }
+}
