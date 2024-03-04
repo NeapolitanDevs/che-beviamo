@@ -11,10 +11,11 @@ export const ENDPOINT = {
     getByName: '/getByName',
     getMultipleRandom: '/getMultipleRandom',
     add: '/add/',
-    get: '/get/'
+    get: '/get/',
+    getAllNames: '/getAllNames'
 };
 
 export const CREATORS = [
-    'Marco Abate',
-    'Giuseppe Nappo'
+    {name: 'Marco Abate', link: 'https://www.linkedin.com/in/marco-abate'},
+    {name: 'Giuseppe Nappo', link: 'https://www.linkedin.com/in/giuseppe-nappo-a22444170'}
 ];

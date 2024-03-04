@@ -28,7 +28,11 @@ export class CocktailService {
     return this.apiService.getMultipleRandom(numberOfDrink);
   }
 
-  getByName(name: string): Observable<CocktailClass> {
+  getByName(name: string): Observable<CocktailClass[]> {
     return this.apiService.getByName(name);
+  }
+
+  getAllNames(name: string): Observable<any>{
+    return this.apiService.getAllNames(name);
   }
 }

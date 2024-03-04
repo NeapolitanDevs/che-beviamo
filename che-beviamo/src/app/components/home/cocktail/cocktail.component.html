@@ -32,7 +32,7 @@
                         <mat-icon>refresh</mat-icon>
                     </button>
         
-                    <button mat-fab color="primary" (click)="search(ingredient.value, cocktailName.value)">
+                    <button mat-fab color="primary" [disabled]="!(ingredient?.value || cocktailName?.value?.length > 2)" (click)="search(ingredient.value, cocktailName.value)">
                         <mat-icon>search</mat-icon>
                     </button>
                 </div>

@@ -32,8 +32,15 @@ export class ApiService {
     );
   }
 
-  getByName(name: string): Observable<CocktailClass> {
+  getByName(name: string): Observable<CocktailClass[]> {
     return this.http.get<any>(ROOT_URL + ROUTE_TYPE.cocktail + ENDPOINT.getByName + '/' + name)
+    .pipe(
+      map(x => x.body)
+    );
+  }
+
+  getAllNames(name: string): Observable<any> {
+    return this.http.get<any>(ROOT_URL + ROUTE_TYPE.cocktail + ENDPOINT.getAllNames + '/' + name)
     .pipe(
       map(x => x.body)
     );

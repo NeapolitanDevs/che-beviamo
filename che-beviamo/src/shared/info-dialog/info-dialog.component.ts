@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CREATORS } from '../constant';
 
 @Component({
   selector: 'app-info-dialog',
@@ -7,6 +8,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./info-dialog.component.scss']
 })
 export class InfoDialogComponent implements OnInit {
+
+  creatorsList: {name: string, link: string}[] = CREATORS;
 
   constructor(public dialogRef: MatDialogRef<InfoDialogComponent>) { }
 
