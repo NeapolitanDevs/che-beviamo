@@ -9,7 +9,6 @@
               </mat-expansion-panel-header>
 
               <div class="row">
-                <!-- Se cerchi per nome si disabilita la select e viceversa -->
                 <div class="col">
                     <mat-form-field appearance="outline" class="w-100" color="accent">
                         <mat-label>{{'FORM.INGREDIENTS' | translate}}</mat-label>
@@ -20,14 +19,13 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="col-7 col-md-4">
+                <div class="col-6 col-md-4">
                     <mat-form-field appearance="outline" class="w-100" color="accent">
                         <mat-label>{{'FORM.COCKTAIL_NAME' | translate}}</mat-label>
                         <input matInput [formControl]="cocktailName" placeholder="Whiskey Sour">
                     </mat-form-field>
                 </div>
-                <div class="col">
-                    <!-- Si attiva solo quando filtri per la prima volta -->
+                <div class="col d-flex justify-content-end">
                     <button mat-fab color="basic" class="me-2" (click)="reset()">
                         <mat-icon>refresh</mat-icon>
                     </button>
@@ -42,13 +40,11 @@
         </mat-accordion>
     </div>
     
-    <!-- fare componente card con content projection -->
     <div *ngIf="loadCocktail$ | async; else load">
         <div class="row">
             <div class="col-12 col-md-6 mb-2" *ngFor="let cocktail of cocktailList">
                 <mat-card class="mat-elevation-z3">
                     <mat-card-header class="d-flex justify-content-between">
-                        <!-- <mat-card-title-group> -->
                             <mat-card-title>{{cocktail.name}}</mat-card-title>
                             <mat-card-subtitle>{{cocktail.alcoholic}}</mat-card-subtitle>
                             <mat-card-subtitle>
@@ -59,7 +55,11 @@
                             <img mat-card-md-image [src]="cocktail.thumbnail" class="img-radius">
                     </mat-card-header>
                     <mat-card-actions>
-                        <button mat-button (click)="openDialog(cocktail.instructions)">{{'ACTIONS.PREPARATION' | translate}}</button>
+                        <button mat-button
+                        dialog
+                        [dialogTitle]="'ACTIONS.PREPARATION'"
+                        [dialogMessage]="cocktail.instructions[(translate.getBrowserLang() || '').toUpperCase()] ?? 'DESCRIPTION.NOT_FOUND'"
+                        >{{'ACTIONS.PREPARATION' | translate}}</button>
                       </mat-card-actions>
                 </mat-card>
             </div>

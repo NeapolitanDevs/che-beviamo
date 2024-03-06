@@ -1,5 +1,10 @@
-<h1 mat-dialog-title>{{'ACTIONS.PREPARATION' | translate}}</h1>
-<div mat-dialog-content>{{data?.instruction | translate}}</div>
+<h1 mat-dialog-title>{{data?.title | translate}}</h1>
+<div mat-dialog-content>
+  <h4>{{data?.descr | translate}}</h4>
+  <ng-container *ngIf="data?.type">
+    <a *ngFor="let creator of creatorsList" mat-stroked-button [href]="creator.link" target="_blank" class="me-2">{{creator.name}}</a>
+  </ng-container>
+</div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>{{'ACTIONS.CLOSE' | translate}}</button>
 </div>

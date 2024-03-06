@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { HelpDialogComponent } from 'src/shared/help-dialog/help-dialog.component';
-import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.component';
+import { DIALOGTYPE } from 'src/shared/constant';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,23 +8,8 @@ import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.componen
 })
 export class ToolbarComponent implements OnInit {
   
-  constructor(
-    public router: Router,
-    public dialog: MatDialog
-    ) { }
+  dialogType = DIALOGTYPE;
 
-  ngOnInit(): void {
-  }
-
-  goToInfo() {
-    this.router.navigate(['/home/info']);
-  }
-
-  openDialog(info: boolean) {
-    this.dialog.open(info ? InfoDialogComponent : HelpDialogComponent, {
-      autoFocus: false,
-      restoreFocus: false,
-      width: '500px'
-    });
-  }
+  constructor() { }
+  ngOnInit(): void {}
 }

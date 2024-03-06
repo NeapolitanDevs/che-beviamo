@@ -1,17 +1,15 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { DetailDialogComponent } from 'src/shared/detail-dialog/detail-dialog.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
-import { HelpDialogComponent } from 'src/shared/help-dialog/help-dialog.component';
-import { InfoDialogComponent } from 'src/shared/info-dialog/info-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { DialogDirective } from 'src/directive/dialog.directive';
 
 @NgModule({
   declarations: [
     DetailDialogComponent,
-    InfoDialogComponent,
-    HelpDialogComponent
+    DialogDirective
   ],
   imports: [
     CommonModule,
@@ -23,7 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    DialogDirective
   ]
 })
 export class SharedModule { }

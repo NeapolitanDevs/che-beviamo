@@ -4,10 +4,17 @@
 
     <span class="spacer"></span>
 
-    <button mat-icon-button >
-      <mat-icon (click)="openDialog(false)">help</mat-icon>
+    <button mat-icon-button
+      dialog
+      [dialogTitle]="'DIALOG.HOW_DOES_IT_WORK'"
+      [dialogMessage]="'DESCRIPTION.HOW_DOES_IT_WORK'">
+        <mat-icon>help</mat-icon>
     </button>
-    <button mat-icon-button >
-      <mat-icon (click)="openDialog(true)">info</mat-icon>
+    <button mat-icon-button 
+      dialog
+      [dialogTitle]="'DIALOG.WHO_WE_ARE'"
+      [dialogMessage]="'DESCRIPTION.WHO_WE_ARE'"
+      [type]="dialogType.INFO">
+        <mat-icon>info</mat-icon>
     </button>
 </mat-toolbar>

@@ -3,8 +3,6 @@ import { FormControl } from '@angular/forms';
 import { BehaviorSubject, Subscription, take } from 'rxjs';
 import { CocktailClass } from 'src/models/cocktail';
 import { CocktailService } from './cocktail.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DetailDialogComponent } from 'src/shared/detail-dialog/detail-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -26,8 +24,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
 
   constructor(
     private cocktailService: CocktailService,
-    public dialog: MatDialog,
-    private translate: TranslateService
+    public translate: TranslateService
     ) { }
 
   ngOnInit(): void {
@@ -57,11 +54,11 @@ export class CocktailComponent implements OnInit, OnDestroy {
       error: (e) => this.loadCocktail$.next(true)
     });
 
-    //this.test();
+    this.test();
   }
 
   test() {
-    this.cocktailService.getAllNames('gin').pipe(take(1)).subscribe(x => console.log(x));
+    this.cocktailService.getAllNames('gin').pipe(take(1)).subscribe(x => console.log('tttt', x));
   }
 
   getRandom() {
@@ -70,19 +67,6 @@ export class CocktailComponent implements OnInit, OnDestroy {
       this.loadCocktail$.next(true);
       console.log(x);
       this.cocktailList = x;
-    });
-  }
-
-  openDialog(instruction: any) {
-    const lang = this.translate.getBrowserLang()?.toUpperCase();
-    const instructionDialog = lang ? instruction[lang] : 'DESCRIPTION.NOT_FOUND'
-    this.dialog.open(DetailDialogComponent, {
-      autoFocus: false,
-      restoreFocus: false,
-      width: '500px',
-      data: {
-        instruction: instructionDialog,
-      }
     });
   }
 

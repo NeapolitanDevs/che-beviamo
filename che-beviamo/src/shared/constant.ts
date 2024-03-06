@@ -24,3 +24,7 @@ export const LANGUAGES: any = {
     IT : { code: 'it', label: 'LANGUAGES.ITALIAN' },
     EN : { code: 'en', label: 'LANGUAGES.ENGLISH' }
 }
+
+export const DIALOGTYPE: any = {
+    INFO: 'INFO'
+}
