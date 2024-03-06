@@ -32,33 +32,24 @@ export class CocktailComponent implements OnInit, OnDestroy {
 
     this.sub1$ = this.ingredient.valueChanges.subscribe(value => {
       if (value) this.cocktailName.reset();
+      if (value?.length > 0) this.search(true, value);
     });
 
     this.sub2$ = this.cocktailName.valueChanges.subscribe(value => {
       if (value) this.ingredient.reset();
+      if (value?.length > 2) this.search(false, value);
     });
   }
 
-  search(ingredient: string[], name: string) {
-    this.loadCocktail$.next(false);
+  search(ingredient: boolean, value: any) {
     const apiCall = ingredient ? 
-      this.cocktailService.getByMultipleIngredient(ingredient.toString()) :
-      this.cocktailService.getByName(name);
+      this.cocktailService.getByMultipleIngredient(value.toString()) :
+      this.cocktailService.getByName(value);
 
-    apiCall.pipe(take(1)).subscribe({
-      next: (resp) => {
-        this.loadCocktail$.next(true);
+    apiCall.pipe(take(1)).subscribe((resp) => {
         console.log('Response', resp);
         this.cocktailList = resp;
-      },
-      error: (e) => this.loadCocktail$.next(true)
     });
-
-    this.test();
-  }
-
-  test() {
-    this.cocktailService.getAllNames('gin').pipe(take(1)).subscribe(x => console.log('tttt', x));
   }
 
   getRandom() {
