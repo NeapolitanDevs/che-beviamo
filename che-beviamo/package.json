@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --open ",
     "build": "ng build",
+    "build-prod": "ng build --prod",
     "prebuild": "npm --no-git-tag-version version patch",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

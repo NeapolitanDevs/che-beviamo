@@ -11,9 +11,9 @@ COPY . /src/code
 WORKDIR /src/code
 
 RUN npm i
-RUN npm run build
+RUN npm run build-prod
 RUN mv "dist/che-beviamo" /src/build
 
 FROM nginx:latest
 
-COPY --from=builder /src/build /usr/share/nginx/html/home/cocktail
+COPY --from=builder /src/build /usr/share/nginx/html
