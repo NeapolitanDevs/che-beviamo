@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "http://api.whatshouldwedrink.com",
+      "secure": false
+    }
+  }

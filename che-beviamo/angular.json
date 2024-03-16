@@ -76,7 +76,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "che-beviamo:build:production"
+              "browserTarget": "che-beviamo:build:production",
+              "proxyConfig": "proxy-prod.conf.json"
             },
             "development": {
               "browserTarget": "che-beviamo:build:development"
