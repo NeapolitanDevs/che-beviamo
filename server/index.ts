@@ -7,11 +7,10 @@ import { cocktailRouter } from "./routes/cocktail";
 import { ingredientRouter } from "./routes/ingredient";
 
 const app = express();
-const hostname = '127.0.0.1';
-const port = 3000;
+const port = 8080;
 dotenv.config();
 
-app.use(express.static(process.cwd()+"/../che-beviamo/"));
+//app.use(express.static(process.cwd()+"/../che-beviamo/"));
 
 app.get('/', function (req: Request,res: Response) {
   console.log('GET /');
